@@ -11,7 +11,10 @@ $(document).ready(function() {
   // but we need to pass a parameter $(this) to the turnSquare function
   // to do this, we need to use the .click(function() { turnSquare( $(this) ) }) format
   
-  
+  $(".picture-box").click(function() {
+    turnSquare( $(this) ) 
+    
+  })
   
 });
 
@@ -23,7 +26,7 @@ function turnSquare(squareObject)
   // increment (add) 1 to the variable clickCount
   // it will look something like this clickCount = 
 
-
+  clickCount = clickCount + 1;
    
   $("#clickCount").html(clickCount);
   
@@ -37,9 +40,15 @@ function turnSquare(squareObject)
   // if the click count equals 2, set the variable secondColor to the value of secretSquareColor and then execute the function checkMatches
   
   
-}
 
-
+ if (clickCount==1){
+   firstColor= secretSquareColor;
+ } 
+ if (clickCount==2){
+   secondColor= secretSquareColor
+   checkMatches();
+ }
+ }
 
 function checkMatches(){
   
@@ -48,6 +57,14 @@ function checkMatches(){
   // else alert to the user "Try again!"
   
   
+  
+  if(firstColor == secondColor)
+  {
+    alert("You win!");
+  }
+  else{
+    alert("Try again!");
+  }
   
 
   // STEP FIVE
@@ -58,8 +75,8 @@ function checkMatches(){
 }
 
 
-function resetSquares()
-{
+
+
   // STEP SIX
   // reset the clickCount variablel to 0
   
@@ -71,5 +88,10 @@ function resetSquares()
   // STEP SEVEN
   // change all elements with the class picture-box to have a background color of #cccccc
   
-
+function resetSquares()
+{
+  clickCount = 0;
+  $("#clickCount").html(clickCount);
+  $(".picture-box").css("background-color", "#cccccc"); 
 }
+
